@@ -27,7 +27,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
         $routes->get('purchase/getPurchaseHistory', 'PurchaseController::getPurchaseHistory');
         $routes->get('purchase/getPurchaseItems/(:num)', 'PurchaseController::getPurchaseItems/$1');
         $routes->post('purchase/store', 'PurchaseController::store');
-
+        $routes->get('purchase/exportDetailed', 'PurchaseController::exportDetailed');
         // Issuance Module
         $routes->get('issuance', 'IssuanceController::index');
         $routes->post('issuance/store', 'IssuanceController::store');
