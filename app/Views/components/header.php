@@ -7,7 +7,7 @@
       <title>BHC</title>
       
     <!-- Favicon -->
-      <link rel="shortcut icon" href="<?= base_url('public/assets/images/favicon.ico') ?>">
+      <link rel="shortcut icon" href="<?= base_url('public/assets/images/BARANGAY_LOGO.png') ?>">
       
       <!-- Library / Plugin Css Build -->
       <link rel="stylesheet" href="<?= base_url('public/assets/css/core/libs.min.css') ?>">

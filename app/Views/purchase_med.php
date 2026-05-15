@@ -226,7 +226,34 @@ $(document).ready(function() {
     $('#btnFilter').click(() => historyTable.ajax.reload());
 
     $('#addRow').click(() => {
-        $('#itemRows').append(`<tr><td><select name="med_id[]" class="form-select form-select-sm" required><option value="">-- Choose --</option><?php foreach($meds as $m): ?><option value="<?= $m->Id ?>"><?= $m->Description ?> (<?= $m->Dosage ?>)</option><?php endforeach; ?></select></td><td><input type="number" name="qty[]" class="form-control form-control-sm calc" required></td><td><input type="number" name="price[]" class="form-control form-control-sm calc" required step="0.01"></td><td class="text-center"><button type="button" class="btn btn-link text-danger p-0 removeRow"><i class="fas fa-trash-alt"></i></button></td></tr>`);
+        $('#itemRows').append(`<tr><td><select name="med_id[]" class="form-select form-select-sm" required><option value="">-- Choose --</option><?php foreach($meds as $m): ?><option value="<?= $m->Id ?>"><?= $m->Description ?> (<?= $m->Dosage ?>)</option><?php endforeach; ?></select></td><td><input type="number" name="qty[]" class="form-control form-control-sm calc" required min="1"></td><td><input type="number" name="price[]" class="form-control form-control-sm calc" required step="0.01"></td><td class="text-center"><button type="button" class="btn btn-link text-danger p-0 removeRow"><i class="fas fa-trash-alt"></i></button></td></tr>`);
+    });
+
+    // --- NEW DUPLICATE MEDICATION CHECK ---
+    $(document).on('change', 'select[name="med_id[]"]', function() {
+        let currentSelect = $(this);
+        let selectedValue = currentSelect.val();
+        
+        if (selectedValue !== "") {
+            let matchCount = 0;
+            
+            // Loop through all medicine dropdowns to search for duplicates
+            $('select[name="med_id[]"]').each(function() {
+                if ($(this).val() === selectedValue) {
+                    matchCount++;
+                }
+            });
+            
+            // If the same value is found more than once, alert and reset selection
+            if (matchCount > 1) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Duplicate Item',
+                    text: 'This medicine has already been added to the purchase entry list.'
+                });
+                currentSelect.val(""); // Clear selection
+            }
+        }
     });
 
     $(document).on('click', '.removeRow', function() { $(this).closest('tr').remove(); calculateTotal(); });
@@ -242,19 +269,43 @@ $(document).ready(function() {
         $('#grandTotalDisplay').text('₱ ' + total.toLocaleString(undefined, {minimumFractionDigits: 2}));
     }
 
-    $('#purchaseForm').on('submit', function(e) {
-        e.preventDefault();
-        $.ajax({
-            url: "<?= base_url('purchase/store') ?>",
-            type: "POST",
-            data: new FormData(this),
-            contentType: false, processData: false,
-            success: (res) => {
-                Swal.fire('Success', res.message, 'success');
-                location.reload();
+   $('#purchaseForm').on('submit', function(e) {
+    e.preventDefault(); // Prevents native browser refresh
+    
+    $.ajax({
+        url: "<?= base_url('purchase/store') ?>",
+        type: "POST",
+        data: new FormData(this),
+        contentType: false, 
+        processData: false,
+        success: (res) => {
+            // 1. Show the success alert box
+            Swal.fire('Success', res.message, 'success');
+            
+            // 2. Reset the main form fields (Date, Ref No, File upload)
+            $('#purchaseForm')[0].reset();
+            
+            // 3. Remove all extra appended dynamic rows except the first one
+            $('#itemRows tr').not(':first').remove();
+            
+            // 4. Reset the values of the remaining first row
+            let firstRow = $('#itemRows tr:first');
+            firstRow.find('select').val('');
+            firstRow.find('input').val('');
+            
+            // 5. Recalculate totals to update the UI display back to ₱ 0.00
+            calculateTotal();
+            
+            // 6. Reload the history table data dynamically without a full page refresh
+            if (typeof historyTable !== 'undefined') {
+                historyTable.ajax.reload(null, false); 
             }
-        });
+        },
+        error: (err) => {
+            Swal.fire('Error', 'Something went wrong while saving.', 'error');
+        }
     });
+});
 });
 
 function downloadDetailedReport() {

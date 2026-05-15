@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BHC</title>
     
-    <link rel="shortcut icon" href="<?= base_url('public/assets/images/favicon.ico') ?>">
+    <link rel="shortcut icon" href="<?= base_url('public/assets/images/BARANGAY_LOGO.png') ?>">
     
     <link rel="stylesheet" href="<?= base_url('public/assets/css/core/libs.min.css') ?>">
     
@@ -20,15 +21,12 @@
     <link rel="stylesheet" href="<?= base_url('public/assets/css/rtl.min.css') ?>">
 </head>
   <body class=" " data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">
-    <!-- loader Start -->
     <div id="loading">
       <div class="loader simple-loader">
           <div class="loader-body">
           </div>
       </div>    </div>
-    <!-- loader END -->
-    
-      <div class="wrapper">
+    <div class="wrapper">
       <section class="login-content">
          <div class="row m-0 align-items-center bg-white vh-100">            
             <div class="col-md-6">
@@ -36,34 +34,14 @@
                   <div class="col-md-10">
                      <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
                         <div class="card-body">
-                           <a href="#" class="navbar-brand d-flex align-items-center mb-3">
-                              
-                              <!--Logo start-->
-                              <div class="logo-main">
-                                  <div class="logo-normal">
-                                      <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                                          <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                                          <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                                          <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                                      </svg>
-                                  </div>
-                                  <div class="logo-mini">
-                                      <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2" transform="rotate(-45 -0.757324 19.2427)" fill="currentColor"/>
-                                          <rect x="7.72803" y="27.728" width="28" height="4" rx="2" transform="rotate(-45 7.72803 27.728)" fill="currentColor"/>
-                                          <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
-                                          <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
-                                      </svg>
-                                  </div>
-                              </div>
-                              <!--logo End-->
-                              
-                              
-                              
-                              
-                              <h4 class="logo-title ms-3">BHC</h4>
-                           </a>
+                           
+                           <div class="text-center mb-3">
+                              <a href="#" class="navbar-brand d-inline-flex align-items-center justify-content-center">
+                                 <img src="<?= base_url('public/assets/images/BARANGAY_LOGO.png') ?>" alt="Barangay Logo" style="height: 200px; width: auto;">
+                                 <h4 class="logo-title ms-3"></h4>
+                              </a>
+                           </div>
+
                            <h2 class="mb-2 text-center">Sign In</h2>
                            <p class="text-center">Login to stay connected.</p>
                           <form action="<?= base_url('loginProcess') ?>" method="post">
@@ -84,41 +62,17 @@
                                        <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" aria-describedby="password" placeholder=" ">
                                     </div>
                                  </div>
-                                 <!-- <div class="col-lg-12 d-flex justify-content-between">
-                                    <div class="form-check mb-3"> -->
-                                       <!-- <input type="checkbox" class="form-check-input" id="customCheck1"> -->
-                                       <!-- <label class="form-check-label" for="customCheck1">Remember Me</label> -->
-                                    <!-- </div> -->
-                                    <!-- <a href="recoverpw.html">Forgot Password?</a> -->
-                                 <!-- </div> -->
                               </div>
                               <div class="d-flex justify-content-center">
                                  <button type="submit" class="btn btn-primary">Sign In</button>
                               </div>
 
-                            </form>
+                          </form>
 
-                              <!-- <p class="text-center my-3">or sign in with other accounts?</p> -->
                               <div class="d-flex justify-content-center">
                                  <ul class="list-group list-group-horizontal list-group-flush">
-                                    <!-- <li class="list-group-item border-0 pb-0">
-                                       <a href="#"><img src="<?= base_url('public/assets/images/brands/fb.svg') ?>" alt="fb"></a>
-                                    </li>
-                                    <li class="list-group-item border-0 pb-0">
-                                       <a href="#"><img src="<?= base_url('public/assets/images/brands/gm.svg') ?>" alt="gm"></a>
-                                    </li>
-                                    <li class="list-group-item border-0 pb-0">
-                                       <a href="#"><img src="<?= base_url('public/assets/images/brands/im.svg') ?>" alt="im"></a>
-                                    </li> -->
-                                    <!-- <li class="list-group-item border-0 pb-0">
-                                       <a href="#"><img src="<?= base_url('public/assets/images/brands/li.svg') ?>" alt="li"></a>
-                                    </li> -->
                                  </ul>
                               </div>
-                              <!-- <p class="mt-3 text-center">
-                                 Don’t have an account? <a href="sign-up.html" class="text-underline">Click here to sign up.</a>
-                              </p> -->
-                           </form>
                         </div>
                      </div>
                   </div>
@@ -159,7 +113,6 @@
         <script src="<?= base_url('public/assets/js/plugins/form-wizard.js') ?>"></script>
 
         <script src="<?= base_url('public/assets/js/hope-ui.js') ?>" defer></script>
-    
     
   </body>
 </html>
